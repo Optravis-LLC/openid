@@ -1,9 +1,9 @@
-use crate::{deserializers::bool_from_str_or_bool, Address, StandardClaimsSubject};
-
 use chrono::NaiveDate;
 use serde::{Deserialize, Serialize};
 use url::Url;
 use validator::Validate;
+
+use crate::{deserializers::bool_from_str_or_bool, Address, StandardClaimsSubject};
 
 /// The userinfo struct contains all possible userinfo fields regardless of scope. [See spec.](https://openid.net/specs/openid-connect-basic-1_0.html#StandardClaims)
 #[derive(Debug, Deserialize, Serialize, Validate, Clone, Eq, PartialEq)]
@@ -71,9 +71,6 @@ pub struct Userinfo {
     #[serde(default)]
     /// End-User's preferred postal address. The value of the address member is a JSON [RFC4627] structure containing some or all of the members defined in Section 5.1.1.
     pub address: Option<Address>,
-    #[serde(default)]
-    /// Time the End-User's information was last updated. Its value is a JSON number representing the number of seconds from 1970-01-01T0:0:0Z as measured in UTC until the date/time.
-    pub updated_at: Option<i64>,
 }
 
 impl StandardClaimsSubject for Userinfo {
